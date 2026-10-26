@@ -1,5 +1,7 @@
 # Group Buff Toggle
 
+**Author:** Babuni.dev
+
 A tiny quality-of-life addon for **World of Warcraft 1.12** that lets you
 keep party and target buffs visible without covering the unit frames. No
 dependencies, no configuration window, and no fuss.
