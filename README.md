@@ -1,98 +1,85 @@
 # Group Buff Toggle
 
-**Author:** Babuni.dev
+**Creator:** Babuni.dev · **Version:** 1.2.0 · **Game:** World of Warcraft Vanilla 1.12 · **Interface:** 11200 · **License:** [MIT](LICENSE)
 
-A tiny quality-of-life addon for **World of Warcraft 1.12** that lets you
-keep party and target buffs visible without covering the unit frames. No
-dependencies, no configuration window, and no fuss.
+**Group Buff Toggle** is a lightweight, Blizzard-style addon that places **up to 16 beneficial aura icons beside each of four default party-member frames** and, independently, **up to 16 beside the default target frame**. Two familiar **Buffs** checkboxes make those overlays easy to switch on or off. The checkboxes can also be independently hidden via slash commands.
 
-## Features
+**Both buff displays begin switched off**, so installing the addon does not immediately put new buff icons on the screen. Both checkbox-visibility preferences begin on, but a checkbox appears only while its corresponding party or target unit frame is available. The four switches are saved **account-wide**.
 
-- Adds a familiar Blizzard-style **Buffs** checkbox below the party frames.
-- Adds a separate **Buffs** checkbox beside the target frame.
-- Shows up to 16 buffs per unit in two tidy rows beside the frames.
-- Keeps party and target settings independent and remembers both between sessions.
-- Shows the normal game tooltip when you hover over a buff.
-- Stays lightweight: it uses the built-in unit-aura API and stores only two settings.
+The addon *displays buffs only*. It does **not** apply, remove, prioritize, cast, dispel, track remaining durations, show debuffs as a separate list, or automatically choose a target.
 
-Both displays start disabled, so the addon never changes your UI until you tick
-the checkbox you want.
+## Install and enable
 
-## Installation
-
-1. Download the repository as a ZIP.
-2. Extract the `GroupBuffToggle` folder into your World of Warcraft
-   `Interface\AddOns` directory.
-3. Restart the game or type `/reload`.
-4. Make sure **Group Buff Toggle** is enabled on the character-select AddOns screen.
-
-The final path should look like:
+Copy the project folder so that the source and manifest are here:
 
 ```text
-World of Warcraft\Interface\AddOns\GroupBuffToggle\GroupBuffToggle.toc
+World of Warcraft/
+└── Interface/
+    └── AddOns/
+        └── GroupBuffToggle/
+            ├── GroupBuffToggle.toc
+            └── GroupBuffToggle.lua
 ```
 
-## Upgrade from a previous add-on name
+Restart WoW or run `/reload`. Enable **Group Buff Toggle** at character selection. The [published v1.2.0 release](https://github.com/babunidev/GroupBuffToggle/releases/tag/v1.2.0) provides [GroupBuffToggle.zip](https://github.com/babunidev/GroupBuffToggle/releases/download/v1.2.0/GroupBuffToggle.zip) and a SHA256SUMS text file. The release exists; its files were **not downloaded and checksum-verified in this documentation audit**.
 
-If you used this add-on under a previous folder name, migrate your saved data
-before playing with the new installation. A normal file replacement is not
-enough when the folder and saved-variable names change.
+The addon has no required external library and no configuration window. It is specifically built for **default Blizzard PartyMemberFrame1–4 and TargetFrame anchors**, not for substitute party/target frames from other UI addons.
 
-1. Fully close the game. Keep the previous add-on installed for this step.
-2. Install the new `GroupBuffToggle` folder beside the previous folder.
-3. Open PowerShell in `GroupBuffToggle` and run the following, replacing both example values:
+## How to use it
 
-   ```powershell
-   .\Upgrade-SavedData.ps1 -ClientPath "C:\Games\World of Warcraft" -PreviousAddonName "PreviousAddonFolder"
-   ```
+With a party, tick **Buffs** below the lowest currently visible party frame to show member buffs in two eight-icon rows beside each displayed party member. Untick it to hide them. Select a target, then tick its separate **Buffs** checkbox to display that unit's buffs. Hover a buff icon for the native **GameTooltip**.
 
-The helper reads the previous TOC, copies account-wide and per-character saved
-data to the new names, and saves backups under `AddonUpgradeBackups` in the
-game folder. It keeps the original files intact and refuses to overwrite
-existing saved data for the new add-on. It does not execute saved Lua code.
+The checkboxes themselves appear only in context: the party control requires a visible, populated party frame; the target control requires a visible target frame with a target. A missing checkbox when solo or without a target does **not** mean the account setting has been lost.
 
-4. Disable the previous add-on and enable **GroupBuffToggle** before entering the world.
-5. Check your settings and saved data. Keep the backups until you have verified them.
+### Four independent controls
 
-Further updates using the same add-on name keep your saved data normally.
-On other operating systems, back up the files, then copy the previous add-on's
-`.lua` file in each `WTF/Account/**/SavedVariables` directory to `GroupBuffToggle.lua`.
-Change only the top-level variable name declared in the old TOC to the matching
-name in the new TOC; leave its table contents unchanged. Do this with the game closed.
+| Saved key in `GroupBuffsDB` | Default | Command | Effect |
+| --- | --- | --- | --- |
+| `enabled` | **false** | `/groupbuffs group on\|off\|toggle` | Show/hide **party buff icons** |
+| `groupCheckbox` | **true** | `/groupbuffs groupbox on\|off\|toggle` | Show/hide the **party Buffs checkbox** |
+| `targetEnabled` | **false** | `/groupbuffs target on\|off\|toggle` | Show/hide **target buff icons** |
+| `targetCheckbox` | **true** | `/groupbuffs targetbox on\|off\|toggle` | Show/hide the **target Buffs checkbox** |
 
-## Usage
+Type `/groupbuffs` alone to see help and the status of all four controls. For example, `/groupbuffs group on` turns on party buffs, while `/groupbuffs groupbox off` hides only their checkbox. **Hiding a checkbox does not disable its buff icons**; slash controls still work.
 
-- Tick **Buffs** below your party to toggle party-member buffs.
-- Tick **Buffs** beside your target frame to toggle target buffs.
-- Use slash commands to control every display independently:
+Aliases accepted by the source: `party` for `group`; `groupcheckbox` or `partybox` for `groupbox`; `targetcheckbox` for `targetbox`. All take `on`, `off`, or `toggle` as a separate second argument. The addon does not register a separate `/targetbuffs` command.
 
-```text
-/groupbuffs group on|off|toggle
-/groupbuffs groupbox on|off|toggle
-/groupbuffs target on|off|toggle
-/groupbuffs targetbox on|off|toggle
+The README previously said “stores only two settings,” but that described the initial display toggles; **current v1.2.0 code actually persists all four settings**. This source-based correction is part of the present documentation review.
+
+## Buff layout and refresh
+
+Each of four party rows and the target row is a **16-icon, two-row (8+8)** grid. Each icon is **20×20 px**, with **2 px** spacing. The party grid sits to the right of its corresponding frame, and the target grid also sits beside the normal target frame. The addon reads `UnitBuff("party1" .. "party4", index)` and `UnitBuff("target", index)` for **indices 1–16**, shows the texture when present, and hides an absent buff button.
+
+It refreshes on `VARIABLES_LOADED`, `PLAYER_ENTERING_WORLD`, `PARTY_MEMBERS_CHANGED`, and `UNIT_AURA`, as well as a simple **0.5-second** periodic refresh. Tooltips use `GameTooltip:SetUnitBuff` with the unit and buff index. The code doesn't store item IDs, party/target names or a permanent buff history.
+
+**Limits:** this is party-plus-target, **not raid-frame integration**; it shows buff textures, **not durations or charge overlays**. Stacks returned by `UnitBuff` are not rendered. A buff can appear or disappear with up to approximately a half-second timer delay in cases not covered by immediate events. Client and addon interoperability weren't independently tested in this audit.
+
+## Upgrade from the old name: Octo Group Buff Toggle
+
+The addon originally used folder/TOC **OctoGroupBuffToggle**, saved variable **OctoGroupBuffsDB** and title **Octo Group Buff Toggle**. The September 18 rename changed the folder/script and root variable. **Simply replacing files is not enough to recover an old SavedVariables file under its former name.**
+
+1. Exit WoW completely and **back up your WTF SavedVariables folders**.
+2. Install the new **GroupBuffToggle** folder beside the original **OctoGroupBuffToggle** directory.
+3. On Windows/PowerShell, open the new addon folder and run:
+
+```powershell
+.\Upgrade-SavedData.ps1 -ClientPath "C:\Games\World of Warcraft" -PreviousAddonName "OctoGroupBuffToggle"
 ```
 
-Run `/groupbuffs` without arguments to see command help and the current status
-of all four switches. Hiding a checkbox does not disable its buffs; the buff
-display remains independently controllable through its slash command.
+The helper reads the actual TOC declarations, finds saved files, copies backups to `AddonUpgradeBackups`, writes renamed copies without replacing any existing target file, and changes **only top-level** variable assignments from the old to new names. It does **not execute saved Lua** and leaves old files intact. Verify the copied settings, then disable the old addon. Do not run this while WoW is open.
 
-Your choices are saved account-wide.
+On Linux, back up and manually copy the old `WTF/Account/.../SavedVariables/OctoGroupBuffToggle.lua` to the corresponding **GroupBuffToggle.lua**, and change the top-level assignment to **GroupBuffsDB**. Don't alter values inside the table; preserve the original until you verify the settings.
 
-## Compatibility
+The [migration fixture](tests/test_upgrade.ps1) is present in the repository and simulates saved-data moves, backups, Unicode text and overwrite refusal. It **was not executed in this audit**.
 
-Built specifically for the Vanilla 1.12 interface (`11200`) and the
-default party and target frames. Other unit-frame replacement addons may use
-different frame anchors and are not currently supported.
+## Compatibility, license and development
 
-## License
+The addon uses WoW 1.12-era frame names and old Lua callback conventions. Replacement unit-frame addons may move or remove those frames; their support is not claimed. No Lua/game client tests were performed during this documentation audit.
 
-Shared freely for players and friends to use, modify, and enjoy under the MIT License.
+**License:** The repository includes an explicit **[MIT License](LICENSE)** with `Copyright (c) 2026 Babuni.dev`. Preserve that notice in copies/substantial portions as required by the license. Unlike projects in this audit with no license, this repository has already made its source reuse terms explicit.
 
-## Development documentation
+Project history: the **September 10, 2026** first upload introduced the two buff displays, and a same-day revision added independent checkbox visibility and four slash controls. **September 18** renamed Octo Group Buff Toggle to Group Buff Toggle and added migration tooling; **October 26** standardized Babuni.dev attribution and created the first documentation scaffold. This review expands those records without changing gameplay.
 
-- [Concept](CONCEPT.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md)
-- [Architecture](docs/ARCHITECTURE.md) · [Design evidence](docs/DECISIONS.md) · [Development journal](docs/DEVLOG.md)
-- [AI collaborator rules](AGENTS.md)
+[Concept](CONCEPT.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md) · [Architecture](docs/ARCHITECTURE.md) · [Interaction design](docs/DESIGN.md) · [Content and data](docs/CONTENT.md) · [Decisions](docs/DECISIONS.md) · [Development journal](docs/DEVLOG.md) · [AI collaboration](docs/AI_COLLABORATION.md) · [AI/developer instructions](AGENTS.md)
 
-The journal distinguishes source-based reconstruction, author direction, AI assistance, and independently verified behavior.
+**Original idea and creative authority:** Babuni.dev. **Assistant's contribution in this review:** source/history analysis, editorial documentation, Git commit and verification only.
