@@ -26,7 +26,7 @@ Both icon overlays **default false**; checkbox flags **default true**. Hiding a 
 
 ## Collaboration record and verification
 
-For every substantial change capture creator goals, AI analysis and alternatives, creative iteration/corrections, explicit creator acceptance/rejection/deferral, actual files/commits and test results. Do not retroactively attribute the creative's original design to AI.
+For every substantial change capture creative goals, AI analysis and alternatives, creative iteration/corrections, explicit creative acceptance/rejection/deferral, actual files/commits and test results. Do not retroactively attribute the creative's original design to AI.
 
 Testing should cover party change, target switching, tooltips, four independent switches, saved reloads and migration. Run the PowerShell fixture if environment permits; independently test intended client/version. Don't assert success based solely on source or historic release notes.
 
