@@ -1,11 +1,11 @@
 # GroupBuffToggle — developer and AI collaboration rules
 
-**Human project creator and decision-maker:** Babuni.dev.  
+**Human creative and decision-maker:** Babuni.  
 **Current version:** 1.2.0 for WoW interface 11200. **License:** [MIT](LICENSE).
 
 ## Protect the small interaction concept
 
-Group Buff Toggle is a *lightweight, optional*, native-looking information extension for the default party and target frames. Do not turn it into raid automation, buff assignment, casting/dispelling, a heavy settings window or a replacement unit-frame system without the creator's explicit direction.
+Group Buff Toggle is a *lightweight, optional*, native-looking information extension for the default party and target frames. Do not turn it into raid automation, buff assignment, casting/dispelling, a heavy settings window or a replacement unit-frame system without the creative's explicit direction.
 
 The source defines two separate questions for each context:
 1. **Are buff icons visible?** Party `enabled`, target `targetEnabled`.
@@ -26,10 +26,14 @@ Both icon overlays **default false**; checkbox flags **default true**. Hiding a 
 
 ## Collaboration record and verification
 
-For every substantial change capture creator goals, AI analysis and alternatives, creative iteration/corrections, explicit creator acceptance/rejection/deferral, actual files/commits and test results. Do not retroactively attribute the creator's original design to AI.
+For every substantial change capture creator goals, AI analysis and alternatives, creative iteration/corrections, explicit creator acceptance/rejection/deferral, actual files/commits and test results. Do not retroactively attribute the creative's original design to AI.
 
 Testing should cover party change, target switching, tooltips, four independent switches, saved reloads and migration. Run the PowerShell fixture if environment permits; independently test intended client/version. Don't assert success based solely on source or historic release notes.
 
 Update relevant README, CONCEPT, ROADMAP, CHANGELOG, AGENTS and docs/DEVLOG, docs/DECISIONS, docs/DESIGN, docs/ARCHITECTURE, docs/CONTENT, docs/AI_COLLABORATION with material implementations.
 
 Do not publish raw private conversations, private SavedVariables, credentials or another player's character details. This October 27 audit is documentation-only; no behavior change is authorized.
+
+## Repository-local documentation standard
+
+Before writing or changing project documentation, read [docs/DOCUMENTATION.md](docs/DOCUMENTATION.md). These rules travel with this repository and do not depend on the babuni.dev ChatGPT Project. Preserve all project-specific technical, creative, canon, safety, licensing, and historical rules in this file; follow the linked standard for public first-person narrative, human–AI attribution, concise development journals, decision records, and evidence-based verification. **Babuni** is the human creative; **babuni.dev** is the website/portfolio, not the person. Preserve third-party credits and historical legal notices. References above to a dated “documentation-only audit” describe that past task, not a permanent ban on later authorized implementation.
