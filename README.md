@@ -1,6 +1,6 @@
 # Group Buff Toggle
 
-**Creator:** Babuni.dev · **Version:** 1.2.0 · **Game:** World of Warcraft Vanilla 1.12 · **Interface:** 11200 · **License:** [MIT](LICENSE)
+**Creative:** Babuni · **Version:** 1.2.0 · **Game:** World of Warcraft Vanilla 1.12 · **Interface:** 11200 · **License:** [MIT](LICENSE)
 
 **Group Buff Toggle** is a lightweight, Blizzard-style addon that places **up to 16 beneficial aura icons beside each of four default party-member frames** and, independently, **up to 16 beside the default target frame**. Two familiar **Buffs** checkboxes make those overlays easy to switch on or off. The checkboxes can also be independently hidden via slash commands.
 
