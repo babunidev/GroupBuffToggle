@@ -1,6 +1,6 @@
 # Group Buff Toggle
 
-**Creator:** Babuni.dev · **Version:** 1.2.0 · **Game:** World of Warcraft Vanilla 1.12 · **Interface:** 11200 · **License:** [MIT](LICENSE)
+**Creative:** Babuni · **Version:** 1.2.0 · **Game:** World of Warcraft Vanilla 1.12 · **Interface:** 11200 · **License:** [MIT](LICENSE)
 
 **Group Buff Toggle** is a lightweight, Blizzard-style addon that places **up to 16 beneficial aura icons beside each of four default party-member frames** and, independently, **up to 16 beside the default target frame**. Two familiar **Buffs** checkboxes make those overlays easy to switch on or off. The checkboxes can also be independently hidden via slash commands.
 
@@ -80,6 +80,8 @@ The addon uses WoW 1.12-era frame names and old Lua callback conventions. Replac
 
 Project history: the **September 10, 2026** first upload introduced the two buff displays, and a same-day revision added independent checkbox visibility and four slash controls. **September 18** renamed Octo Group Buff Toggle to Group Buff Toggle and added migration tooling; **October 26** standardized Babuni.dev attribution and created the first documentation scaffold. This review expands those records without changing gameplay.
 
-[Concept](CONCEPT.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md) · [Architecture](docs/ARCHITECTURE.md) · [Interaction design](docs/DESIGN.md) · [Content and data](docs/CONTENT.md) · [Decisions](docs/DECISIONS.md) · [Development journal](docs/DEVLOG.md) · [AI collaboration](docs/AI_COLLABORATION.md) · [AI/developer instructions](AGENTS.md)
+- **Project** — [Concept](CONCEPT.md), [Roadmap](ROADMAP.md), [Changelog](CHANGELOG.md)
+- **History** — [Decisions](docs/DECISIONS.md), [Development journal](docs/DEVLOG.md), [AI collaboration](docs/AI_COLLABORATION.md)
+- **Reference** — [Architecture](docs/ARCHITECTURE.md), [Interaction design](docs/DESIGN.md), [Content and data](docs/CONTENT.md), [AI/developer instructions](AGENTS.md)
 
 **Original idea and creative authority:** Babuni.dev. **Assistant's contribution in this review:** source/history analysis, editorial documentation, Git commit and verification only.

@@ -1,6 +1,6 @@
-# GroupBuffToggle — narrative development journal
+# GroupBuffToggle — development journal
 
-**Project creator and creative director:** Babuni.dev  
+**Creative:** Babuni  
 **Retrospective prepared:** October 27, 2026. Sources inspected: current 303-line Lua, manifest, MIT LICENSE, README, saved-data migration helper and fixture, September Git patches and GitHub v1.2.0 release metadata. This is **not** a recovered transcript of original planning conversations.
 
 ## The question is not whether buffs exist, but whether the player wants to see them
