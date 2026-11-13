@@ -1,5 +1,7 @@
 # GroupBuffToggle — human–AI collaboration and authorship
 
+Follow [the documentation standard](DOCUMENTATION.md) for first-person author voice throughout project documentation, factual changelogs, and naming the AI tool and verified model for each contribution.
+
 **Creator and creative director:** Babuni.dev.
 
 ## Trace actual evidence, not speculative origin stories
